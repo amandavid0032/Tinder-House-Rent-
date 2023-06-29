@@ -1,5 +1,7 @@
 <?php
 include "../include/main.php";
+loginSession();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +34,7 @@ include "../include/main.php";
                     Logout
                 </button></a>
         </nav>
-
     </div>
-
     <div class="container">
         <br />
         <h1>Query Record</h1>
@@ -45,6 +45,7 @@ include "../include/main.php";
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Message</th>
+                    <th scope="col">Contact</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +62,7 @@ include "../include/main.php";
                                 <td><?= $data['name']; ?></td>
                                 <td><?= $data['email']; ?></td>
                                 <td><?= $data['message'] ?></td>
+                                <td><?= $data['date'] ?></td>
                             </tr>
                 <?php
                         }

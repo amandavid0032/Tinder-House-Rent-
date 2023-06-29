@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $message = $_POST['message'];
-    $insert = "INSERT INTO contact VALUES (null, '$name', '$email', '$message')";
+    $currentDate = date('Y-m-d H:i:s');
+    $insert = "INSERT INTO contact VALUES (null, '$name', '$email', '$message','$currentDate')";
 
     if (mysqli_query($conn, $insert)) {
         $message =  'Your Query is successfully Added ';
@@ -29,9 +30,12 @@ if (isset($_POST['signup'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
     $currentDate = date('Y-m-d H:i:s');
-    $insert = "INSERT INTO user VALUES (null ,'$name','$email', '$pass','$currentDate')";
+    $role=$_POST['role'];
+    $insert = "INSERT INTO user VALUES (null ,'$name','$email', '$pass','$role','$currentDate')";
     if (mysqli_query($conn, $insert)) {
-        echo "Account is Created successfully";
+        $message =  'Your Account is  created successfully';
+        $color = 'success';
+        header("location:signup.php?message=" . urlencode($message) . "&color=$color");
     } else {
         echo "Something is wrong: " . $insert . "<br>" . $conn->error;
     }
