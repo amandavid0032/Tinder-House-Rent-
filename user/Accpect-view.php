@@ -1,19 +1,7 @@
 <?php
-include '../include/main.php';
+include "../include/main.php";
 loginSession();
-if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-    $type=$_SESSION['type'];
-    $query = "SELECT * FROM user WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
-       if ($user['isfiled'] == 0) {
-            header("location:question.php");
-            exit;
-        }
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,54 +24,48 @@ if (isset($_SESSION['email'])) {
                         <a class="nav-link" href="user-page.php">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Accpect-view.php">Accpect</a>
+                        <!-- <a class="nav-link" href="">Contact</a> -->
                     </li>
                 </ul>
             </div>
             <a href="../logout.php"><button type="button" type="logout" class="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                     Logout
                 </button></a>
+        </nav>
     </div>
-    </nav>
     <div class="container">
         <br />
-        <h1>User List</h1>
+        <h1>Accpect Record</h1>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">User Number</th>
+                    <th scope="col"> Number</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Created-date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Contact</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $query = "SELECT * FROM user";
-                $result = mysqli_query($conn, $query);
-                if ($result) {
-                    $count=1;
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($data = mysqli_fetch_assoc($result)) {
-                            if ($email == $data['email'] ) {
-                                continue; // Skip the record if email matches
-                            }
-                ?>
-            <tbody>
-                <tr>
-                    <td><?= $count++ ?></td>
-                    <td><?= $data['name'] ?></td>
-                    <td><?= $data['email'] ?></td>
-                    <td><?= $data['createddate'] ?></td>
-                    <td>
-                    <a href="user-view.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
-                </td>
-
-                </td>
-                </tr>
-                <tr>
         <?php
+$query = "SELECT u.id,u.name,u.email,u.createddate
+FROM user AS u
+INNER JOIN accpect-reject AS a ON a.aid = u.id";
+$result = mysqli_query($conn, $query);
+foreach ($result as $data) {
+                $count = 1;
+                if ($result) {
+                    if (mysqli_num_rows($result) > 0) {
+                        foreach ($result as $data) {
+                ?>
+                            <tr>
+                                <td><?= $count++ ?></td>
+                                <td><?= $data['id']; ?></td>
+                                <td><?= $data['email']; ?></td>
+                                <td><?= $data['message'] ?></td>
+                                <td><?= $data['date'] ?></td>
+                            </tr>
+                <?php
                         }
                     } else {
                         echo "<tr><td colspan='4'>No data found.</td></tr>";
@@ -91,7 +73,11 @@ if (isset($_SESSION['email'])) {
                 } else {
                     echo "Error in query execution: " . mysqli_error($conn);
                 }
-                mysqli_close($conn);
-        ?>
+            }
+                ?>
             </tbody>
         </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>

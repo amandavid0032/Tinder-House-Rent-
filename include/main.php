@@ -25,20 +25,7 @@ if (isset($_POST['submit'])) {
     }
 }
 // singup code
-if (isset($_POST['signup'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
-    $currentDate = date('Y-m-d H:i:s');
-    $insert = "INSERT INTO user VALUES (null ,'$name','$email','$pass',0,'$currentDate',0)";
-    if (mysqli_query($conn, $insert)) {
-        $message =  'Your Account is  created successfully';
-        $color = 'success';
-        header("location:signUp.php?message=" . urlencode($message) . "&color=$color");
-    } else {
-        echo "Something is wrong: " . $insert . "<br>" . $conn->error;
-    }
-}
+
 // question
 if (isset($_POST['question'])) {
     $id=$_POST['id'];
@@ -119,5 +106,33 @@ function noLoginSession()
         } elseif ($_SESSION['type'] == 0) {
             header("location: ./user/user-page.php");         
         }
+    }
+}
+
+
+
+// Accpect code
+if (isset($_POST['accpect'])) {
+    $id = $_POST['id'];
+    $insert = "INSERT INTO accpect VALUES (null ,'$id',1)";
+    if (mysqli_query($conn, $insert)) {
+        $message =  ' Accpect  successfully';
+        $color = 'success';
+        header("location:user-page.php?message=" . urlencode($message) . "&color=$color");
+    } else {
+        echo "Something is wrong: " . $insert . "<br>" . $conn->error;
+    }
+}
+
+
+if (isset($_POST['reject'])) {
+    $id = $_POST['id'];
+    $insert = "INSERT INTO accpect-reject VALUES (null ,'$id',1)";
+    if (mysqli_query($conn, $insert)) {
+        $message =  ' Reject  successfully Added';
+        $color = 'success';
+        header("location:user-page.php?message=" . urlencode($message) . "&color=$color");
+    } else {
+        echo "Something is wrong: " . $insert . "<br>" . $conn->error;
     }
 }
