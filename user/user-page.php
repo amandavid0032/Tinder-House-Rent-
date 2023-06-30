@@ -3,6 +3,7 @@ include '../include/main.php';
 loginSession();
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
+    $type=$_SESSION['type'];
     $query = "SELECT * FROM user WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
     if ($result && mysqli_num_rows($result) > 0) {
@@ -18,7 +19,7 @@ if (isset($_SESSION['email'])) {
 <html>
 
 <head>
-    <title>Admin</title>
+    <title>User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -46,8 +47,53 @@ if (isset($_SESSION['email'])) {
                 </button></a>
     </div>
     </nav>
-<h1>
-    <?php
-    echo"Hi user";
-    ?>
-</h1>
+    <div class="container">
+        <br />
+        <h1>User Record</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">User Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created-date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $query = "SELECT * FROM user";
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    $count=1;
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($data = mysqli_fetch_assoc($result)) {
+                            if ($email == $data['email'] ) {
+                                continue; // Skip the record if email matches
+                            }
+                ?>
+            <tbody>
+                <tr>
+                    <td><?= $count++ ?></td>
+                    <td><?= $data['name'] ?></td>
+                    <td><?= $data['email'] ?></td>
+                    <td><?= $data['created.date'] ?></td>
+                    <td>
+    <a href="user-view.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+</td>
+
+                </td>
+                </tr>
+                <tr>
+        <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>No data found.</td></tr>";
+                    }
+                } else {
+                    echo "Error in query execution: " . mysqli_error($conn);
+                }
+                mysqli_close($conn);
+        ?>
+            </tbody>
+        </table>

@@ -45,6 +45,7 @@ loginSession();
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Created-date</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +64,11 @@ loginSession();
                     <td><?= $data['name'] ?></td>
                     <td><?= $data['email'] ?></td>
                     <td><?= $data['created.date'] ?></td>
+                    <td>
+    <a href="view-data.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+</td>
+
+                </td>
                 </tr>
                 <tr>
         <?php
