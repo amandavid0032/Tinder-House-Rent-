@@ -63,7 +63,7 @@ loginSession();
                     <td><?= $count++ ?></td>
                     <td><?= $data['name'] ?></td>
                     <td><?= $data['email'] ?></td>
-                    <td><?= $data['created.date'] ?></td>
+                    <td><?= $data['createddate'] ?></td>
                     <td>
     <a href="view-data.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
 </td>

@@ -123,16 +123,3 @@ if (isset($_POST['accpect'])) {
         echo "Something is wrong: " . $insert . "<br>" . $conn->error;
     }
 }
-
-
-if (isset($_POST['reject'])) {
-    $id = $_POST['id'];
-    $insert = "INSERT INTO accpect-reject VALUES (null ,'$id',1)";
-    if (mysqli_query($conn, $insert)) {
-        $message =  ' Reject  successfully Added';
-        $color = 'success';
-        header("location:user-page.php?message=" . urlencode($message) . "&color=$color");
-    } else {
-        echo "Something is wrong: " . $insert . "<br>" . $conn->error;
-    }
-}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2023 at 04:31 PM
+-- Generation Time: Jun 30, 2023 at 11:01 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `tinder-project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accpect-reject`
+--
+
+CREATE TABLE `accpect-reject` (
+  `aid` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `type` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `accpect-reject`
+--
+
+INSERT INTO `accpect-reject` (`aid`, `id`, `type`) VALUES
+(3, 45, 1),
+(4, 45, 1);
 
 -- --------------------------------------------------------
 
@@ -73,12 +93,8 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`id`, `uid`, `image`, `roomimage`, `propertytype`, `bedrooms`, `bathrooms`, `address`, `description`, `laundry`, `parking`, `ac`, `heating`, `amenities`) VALUES
-(37, 0, 'C:xampp	mpphp90D2.tmp', '', 'Flat', '4', '4', 'bhart nagar nabha raod patiala', 'asesdfhgj,', 'Shared', 'Street', 'Centr', 'Yes', 'Pool'),
-(38, 29, 'download.jpg', '', 'Flat', '3', '4', 'bhart nagar nabha raod patiala', 'xdfgn', 'Shared', 'Street', 'Centr', 'Yes', 'Pool'),
-(39, 31, 'download.jpg', '', 'Flat', '4', '3', 'zscvdfbdvds', 'SAdfghjk', 'In-unit', 'Street', 'Centr', 'Yes', 'Pool'),
-(40, 31, 'download.jpg', '', 'Flat', '4', '3', 'zscvdfbdvds', 'SAdfghjk', 'In-unit', 'Street', 'Centr', 'Yes', 'Pool'),
-(41, 31, 'download.jpg', '', 'Flat', '4', '3', 'zscvdfbdvds', 'SAdfghjk', 'In-unit', 'Street', 'Centr', 'Yes', 'Pool'),
-(43, 40, 'download.jpg', 'download.jpg', 'Flat', '3', '3', 'bhart nagar nabha raod patiala', 'hi am aman from patiala ', 'In-unit', 'Street', 'AC Av', 'Yes', 'Gym');
+(4, 45, 'object-dot.png', 'object-dot.png', '', '3', '3', 'ASdfgh', 'asdfgvbnm ', 'Shared', 'Street', 'Centr', 'Yes', 'Pool'),
+(46, 46, 'object-dot.png', 'object-dot.png', 'House', '3', '3', 'bhart nagar nabha raod patiala', 'Sdfghbn', 'In-unit', 'Street', 'Centr', 'Yes', 'Pool');
 
 -- --------------------------------------------------------
 
@@ -92,7 +108,7 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(10) NOT NULL,
   `type` int(11) DEFAULT 0,
-  `created.date` datetime DEFAULT NULL,
+  `createddate` datetime DEFAULT NULL,
   `isfiled` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -100,16 +116,20 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `type`, `created.date`, `isfiled`) VALUES
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `type`, `createddate`, `isfiled`) VALUES
 (21, 'AMAN KONDAL', 'admin@gmail.com', '123456', 1, '2023-06-29 18:43:26', 0),
-(28, 'AMAN KONDAL', 'aman@gmail.com', '12345', 0, '2023-06-30 10:01:16', 1),
-(40, 'AMAN KONDAL', '12@gmail.com', '12', 0, '2023-06-30 15:41:40', 1),
-(41, 'AMAN KONDAL', '123@gmail.com', '123', 0, '2023-06-30 15:42:07', 0),
-(42, 'AMAN KONDAL', 'aman@gmail.com', '12345', 0, '2023-06-30 16:25:15', 0);
+(45, 'AMAN KONDAL', '1@gmail.com', '12', 0, '2023-06-30 21:00:39', 1),
+(46, 'Jaya Devi', '123456@gmail.com', '12', 0, '2023-06-30 21:01:24', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accpect-reject`
+--
+ALTER TABLE `accpect-reject`
+  ADD PRIMARY KEY (`aid`);
 
 --
 -- Indexes for table `contact`
@@ -134,6 +154,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `accpect-reject`
+--
+ALTER TABLE `accpect-reject`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
@@ -143,13 +169,13 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
