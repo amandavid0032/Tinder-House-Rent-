@@ -71,7 +71,9 @@ if (isset($_POST['question'])) {
     if (mysqli_query($conn, $insert)) {
         $update = "UPDATE user SET isfiled= 1 WHERE `uid`=$id";
         if (mysqli_query($conn, $update)) {
-            header("location:user-page.php");
+            $message = ' Property Information Fill successful';
+            $color = 'success';
+            header("location: user-page.php?message=" . urlencode($message) . "&color=$color");
             exit;
         } else {
             echo "Error inserting question: ";

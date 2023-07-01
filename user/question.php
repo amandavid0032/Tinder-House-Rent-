@@ -156,51 +156,49 @@ if (isset($_SESSION['email'])) {
                 </select>
             </div>
             <div>
-                <label id="value" required for="parking-type">Parking Type:</label>
+                <label id="value"  for="parking-type">Parking Type:</label>
             </div>
             <div>
                 <label for="parking-garage" class="radio-label">
-                    <input type="radio" id="parking-street" name="parking-type" value="Garage">Garage</label>
+                    <input type="radio" id="parking-street" name="parking-type" value="Garage" required>Garage</label>
                 <label for="parking-street" class="radio-label">
-                    <input type="radio" id="parking-off-street" name="parking-type" value="Street">Street</label>
+                    <input type="radio" id="parking-off-street" name="parking-type" value="Street" required>Street</label>
                 <label for="parking-off-street" class="radio-label">
-                    <input type="radio" id="parking-available" name="parking-type" value="off Street">Off Street</label>
+                    <input type="radio" id="parking-available" name="parking-type" value="off Street" required>Off Street</label>
                 <label for="parking-available" class="radio-label">
-                    <input type="radio" id="parking-none" name="parking-type" value="None">None</label>
-            </div>
-            </div>
+                    <input type="radio" id="parking-none" name="parking-type" value="None"required>None</label>
             </div>
             <div>
                 <label id="value" for="ac-type">Air Conditioning Type:</label>
             </div>
             <div>
                 <label for="ac-central" class="radio-label">
-                    <input type="radio" id="ac-central" name="ac-type" value="Central AC">
+                    <input type="radio" id="ac-central" name="ac-type" value="Central AC" required>
                     Central AC</label>
                 <label for="ac-available" class="radio-label">
-                    <input type="radio" id="ac-available" name="ac-type" value="AC Available">AC Available</label>
+                    <input type="radio" id="ac-available" name="ac-type" value="AC Available" required>AC Available</label>
                 <label for="ac-none" class="radio-label">
-                    <input type="radio" id="ac-none" name="ac-type" value="None">None</label>
+                    <input type="radio" id="ac-none" name="ac-type" value="None" required>None</label>
             </div>
             <div>
                 <label name="heating" for="heating-available">Heating Available:</label>
             </div>
             <div>
                 <label for="heating-yes" class="radio-label">
-                    <input type="radio" id="heating-yes" name="heating-available" value="Yes">Yes</label>
+                    <input type="radio" id="heating-yes" name="heating-available" value="Yes" required>Yes</label>
                 <label for="heating-no" class="radio-label">
-                    <input type="radio" id="heating-no" name="heating-available" value="No">
+                    <input type="radio" id="heating-no" name="heating-available" value="No" required>
                     No</label>
             </div>
             <div>
-                <label for="amenities">Amenities:</label>
+                <label required for="amenities">Amenities:</label>
             </div>
             <label for="amenities-pool" class="radio-label">
-                <input type="checkbox" id="amenities-pool" name="amenities[]" value="Pool">Pool</label>
+                <input type="checkbox" id="amenities-pool" name="amenities[]" value="Pool" >Pool</label>
             <label for="amenities-gym" class="radio=label">
-                <input type="checkbox" id="amenities-gym" name="amenities[]" value="Gym">Gym</label>
+                <input type="checkbox" id="amenities-gym" name="amenities[]" value="Gym" >Gym</label>
             <label for="amenities-park" class="radio-label">
-                <input type="checkbox" id="amenities-park" name="amenities[]" value="Park">Park</label>
+                <input type="checkbox" id="amenities-park" name="amenities[]" value="Park" >Park</label>
             </div>
             <button name="question" type="submit">Submit</button>
         </form>

@@ -16,12 +16,12 @@ if (isset($_SESSION['email'])) {
 include 'header.php';
 ?>
 <div class="container">
-    <br />
+<div>
+        <center><?php include '../message.php';?></center>
+    </div>    
+<br />
     <h2>Welcome : <?php echo $user['name']; ?></h2>
     <h1>Properties List</h1>
-    <div>
-        <center><?php include '../message.php'; ?></center>
-    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
