@@ -54,7 +54,7 @@ noLoginSession();
                     <button type="button" class="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                         Log In
                     </button></a>
-                <a href="signUp.php">
+                <a href="signup.php">
                     <button type="button" class="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                         Sign up
                     </button></a>
@@ -80,10 +80,10 @@ noLoginSession();
                 Discover a seamless housing experience for students and landlords.
             </p>
             <div class="hero-buttons">
-                <a href="signIn.php"><button type="button" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                <a href="signin.php"><button type="button" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                         Login
                     </button></a>
-                <a href="signUp.php">
+                <a href="signup.php">
                     <button type="button" class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                         SignUp
                     </button></a>
