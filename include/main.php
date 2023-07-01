@@ -142,7 +142,7 @@ if (isset($_POST['accept'])) {
     $id = $_POST['accept'];
     $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 1)";
     if (mysqli_query($conn, $insert)) {
-        $message = 'Accept successful';
+        $message = 'Accept successfully';
         $color = 'success';
         header("Location: user-page.php?message=" . urlencode($message) . "&color=$color");
         exit();
@@ -154,7 +154,7 @@ if (isset($_POST['accept'])) {
     $id = $_POST['reject'];
     $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 0)";
     if (mysqli_query($conn, $insert)) {
-        $message = 'Reject successful';
+        $message = 'Reject successfully';
         $color = 'danger';
         header("Location: user-page.php?message=" . urlencode($message) . "&color=$color");
         exit();
