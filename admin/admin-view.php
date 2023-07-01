@@ -31,10 +31,14 @@ include 'header.php';
                                 <td><?= $data['name'] ?></td>
                                 <td><?= $data['email'] ?></td>
                                 <td><?= $data['createddate'] ?></td>
+
                                 <td>
-                                    <a href="view-data.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                    <?php if ($data['isfiled'] == 1) { ?>
+                                        <a href="view-data.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                    <?php } else { ?>
+                                        <button class="btn btn-danger btn-xs" disabled>Incomplete Signup</button>
+                                    <?php } ?>
                                 </td>
-                            </tr>
                             <tr>
                 <?php
                         }
