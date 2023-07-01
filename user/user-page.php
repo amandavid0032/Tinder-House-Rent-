@@ -1,97 +1,75 @@
 <?php
 include '../include/main.php';
+include 'header.php';
 loginSession();
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
-    $type=$_SESSION['type'];
+    $type = $_SESSION['type'];
+    $id = $_SESSION['uid'];
     $query = "SELECT * FROM user WHERE email = '$email'";
     $result = mysqli_query($conn, $query);
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
-       if ($user['isfiled'] == 0) {
+        if ($user['isfiled'] == 0) {
             header("location:question.php");
             exit;
         }
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-</head>
-
-<body>
-    <div class="relative w-full bg-white">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="user-page.php">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Accpect-view.php">Accpect</a>
-                    </li>
-                </ul>
+<div class="container">
+    <br />
+    <h1><?php echo $email = $_SESSION['email']; ?></h1>
+    <h1>User List</h1>
+    <div>
+                <center><?php include '../message.php'; ?></center>
             </div>
-            <a href="../logout.php"><button type="button" type="logout" class="rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-black hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-                    Logout
-                </button></a>
-    </div>
-    </nav>
-    <div class="container">
-        <br />
-        <h1>User List</h1>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">User Number</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Created-date</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $query = "SELECT * FROM user";
-                $result = mysqli_query($conn, $query);
-                if ($result) {
-                    $count=1;
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($data = mysqli_fetch_assoc($result)) {
-                            if ($email == $data['email'] ) {
-                                continue; // Skip the record if email matches
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created-date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $query = "SELECT * FROM user";
+            $result = mysqli_query($conn, $query);
+            if ($result) {
+                $count = 1;
+                if (mysqli_num_rows($result) > 0) {
+                    while ($data = mysqli_fetch_assoc($result)) {
+                        if ($data['type'] == 0) {
+                            if ($email == $data['email']) {
+                                continue;
                             }
-                ?>
-            <tbody>
-                <tr>
-                    <td><?= $count++ ?></td>
-                    <td><?= $data['name'] ?></td>
-                    <td><?= $data['email'] ?></td>
-                    <td><?= $data['createddate'] ?></td>
-                    <td>
-                    <a href="user-view.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
-                </td>
+            ?>
+                            <tr>
+                                <td><?= $count++ ?></td>
+                                <td><?= $data['name'] ?></td>
+                                <td><?= $data['email'] ?></td>
+                                <td><?= $data['createddate'] ?></td>
+                                <td>
+                                    <a href="user-view.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                </td>
 
-                </td>
-                </tr>
-                <tr>
-        <?php
+                                </td>
+                            </tr>
+                            <tr>
+                <?php
                         }
-                    } else {
-                        echo "<tr><td colspan='4'>No data found.</td></tr>";
                     }
                 } else {
-                    echo "Error in query execution: " . mysqli_error($conn);
+                    echo "<tr><td colspan='4'>No data found.</td></tr>";
                 }
-                mysqli_close($conn);
-        ?>
-            </tbody>
-        </table>
+            } 
+            mysqli_close($conn);
+                ?>
+        </tbody>
+    </table>
+    </body>
+
+    </html>

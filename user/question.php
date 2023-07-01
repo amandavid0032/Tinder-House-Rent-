@@ -90,23 +90,22 @@ if (isset($_SESSION['email'])) {
                         Logout
                     </button></a>
         </div>
-            </nav>        
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-                <div class="lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 cursor-pointer">
-                        <line x1="4" y1="12" x2="20" y2="12"></line>
-                        <line x1="4" y1="6" x2="20" y2="6"></line>
-                        <line x1="4" y1="18" x2="20" y2="18"></line>
-                    </svg>
-                </div>
+        </nav>
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+            <div class="lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 cursor-pointer">
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
             </div>
+        </div>
         </div>
 
         <form id="questionnaire" method="post" enctype="multipart/form-data">
-        <h2><?php echo $user['name'] ?> 
+            <h2>Welcome <?php echo $user['name'] ?>
             </h2>
-        <h2>Landlord Questionnaire</h2>    
-            <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+            <h2>Landlord Questionnaire</h2>
             <div>
                 <label>House Image</label>
                 <input type="file" name="imagename" id="fileToUpload">
@@ -161,11 +160,11 @@ if (isset($_SESSION['email'])) {
             </div>
             <div>
                 <label for="parking-garage" class="radio-label">
-                    <input type="radio" id="parking-street" name="parking-type" value="Street">Garage</label>
+                    <input type="radio" id="parking-street" name="parking-type" value="Garage">Garage</label>
                 <label for="parking-street" class="radio-label">
-                    <input type="radio" id="parking-off-street" name="parking-type" value="Off Street">Street</label>
+                    <input type="radio" id="parking-off-street" name="parking-type" value="Street">Street</label>
                 <label for="parking-off-street" class="radio-label">
-                    <input type="radio" id="parking-available" name="parking-type" value="Parking Available">Off Street</label>
+                    <input type="radio" id="parking-available" name="parking-type" value="off Street">Off Street</label>
                 <label for="parking-available" class="radio-label">
                     <input type="radio" id="parking-none" name="parking-type" value="None">None</label>
             </div>
@@ -197,11 +196,11 @@ if (isset($_SESSION['email'])) {
                 <label for="amenities">Amenities:</label>
             </div>
             <label for="amenities-pool" class="radio-label">
-                <input type="checkbox" id="amenities-pool" name="amenities" value="Pool">Pool</label>
+                <input type="checkbox" id="amenities-pool" name="amenities[]" value="Pool">Pool</label>
             <label for="amenities-gym" class="radio=label">
-                <input type="checkbox" id="amenities-gym" name="amenities" value="Gym">Gym</label>
+                <input type="checkbox" id="amenities-gym" name="amenities[]" value="Gym">Gym</label>
             <label for="amenities-park" class="radio-label">
-                <input type="checkbox" id="amenities-park" name="amenities" value="Park">Park</label>
+                <input type="checkbox" id="amenities-park" name="amenities[]" value="Park">Park</label>
             </div>
             <button name="question" type="submit">Submit</button>
         </form>

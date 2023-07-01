@@ -21,14 +21,31 @@ if (isset($_POST['submit'])) {
         $color = 'success';
         header("location:index.php?message=" . urlencode($message) . "&color=$color");
     } else {
-        echo "Something is wrong in Database: " . $insert . "<br>" . $conn->error;
+        echo "Something is wrong in Database: ";
     }
 }
 // singup code
+if (isset($_POST['signup'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+    $currentDate = date('Y-m-d H:i:s');
+    $role = $_POST['role'];
+    $insert = "INSERT INTO user VALUES (null ,'$name','$email','$pass',0,'$currentDate',0)";
+    if (mysqli_query($conn, $insert)) {
+        $message =  'Your Account is  created successfully';
+        $color = 'success';
+        header("location:signup.php?message=" . urlencode($message) . "&color=$color");
+        header("location:signUp.php?message=" . urlencode($message) . "&color=$color");
+    } else {
+        echo "Something is wrong: ";
+    }
+}
 
 // question
 if (isset($_POST['question'])) {
-    $id=$_POST['id'];
+    session_start();
+    $id = $_SESSION['uid'];
     // houseimage 
     $image_name = $_FILES['imagename']['name'];
     $tmp_name = $_FILES['imagename']['tmp_name'];
@@ -37,6 +54,7 @@ if (isset($_POST['question'])) {
     $roomimage = $_FILES['image']['name'];
     $tmp_name2 = $_FILES['image']['tmp_name'];
     move_uploaded_file($tmp_name2, './../image/' . $roomimage);
+    
     $property = $_POST['property-type'];
     $bedrooms = $_POST['bedrooms'];
     $bathrooms = $_POST['bathrooms'];
@@ -46,17 +64,21 @@ if (isset($_POST['question'])) {
     $parking = $_POST['parking-type'];
     $ac = $_POST['ac-type'];
     $heating = $_POST['heating-available'];
-    $amenities = $_POST['amenities'];
-    $update="UPDATE user SET isfiled= 1 WHERE id=$id";
-    if (mysqli_query($conn, $update)) {
-        // Insert query
-        $insert = "INSERT INTO question VALUES (null, '$id', '$image_name', '$roomimage', '$property', $bedrooms, $bathrooms, '$address', '$description', '$laundry', '$parking', '$ac', '$heating', '$amenities')";
-        if (mysqli_query($conn, $insert)) {
-           header("Location:user-page.php");
+    $amenities = isset($_POST['amenities']) ? $_POST['amenities'] : array();
+    if (isset($amenities) && is_array($amenities)) {
+        $selectedAmenities = implode(', ', $amenities);
+    
+    }
+    $insert = "INSERT INTO question VALUES (null, '$id', '$image_name', '$roomimage', '$property', $bedrooms, $bathrooms, '$address', '$description', '$laundry', '$parking', '$ac', '$heating', '$selectedAmenities')";
+    if (mysqli_query($conn, $insert)) {
+        $update = "UPDATE user SET isfiled= 1 WHERE `uid`=$id";
+        if (mysqli_query($conn, $update)) {
+            header("location:user-page.php");
+            exit;
         } else {
-            echo "Error inserting question: " . mysqli_error($conn);
+            echo "Error inserting question: ";
         }
-    } 
+    }
 }
 
 // login checking code
@@ -73,13 +95,15 @@ if (isset($_POST['login'])) {
             session_start();
             $_SESSION = [
                 'email' => $user['email'],
-                'type' => $user['type']
+                'type' => $user['type'],
+                'uid' =>  $user['uid']
             ];
             header("Location:admin/admin-view.php");
         } elseif ($user['type'] == 0) {
             session_start();
             $_SESSION['email'] = $user['email'];
             $_SESSION['type'] = $user['type'];
+            $_SESSION['uid'] = $user['uid'];
             header("Location:user/user-page.php");
         }
     } else {
@@ -104,22 +128,34 @@ function noLoginSession()
         if ($_SESSION['type'] == 1) {
             header("location: ./admin/admin-view.php");
         } elseif ($_SESSION['type'] == 0) {
-            header("location: ./user/user-page.php");         
+            header("location: ./user/user-page.php");
         }
     }
 }
 
-
-
-// Accpect code
-if (isset($_POST['accpect'])) {
-    $id = $_POST['id'];
-    $insert = "INSERT INTO accpect VALUES (null ,'$id',1)";
+// Accpect  and Reject code
+if (isset($_POST['accept'])) {
+    $uid=$_POST['uid'];
+    $id = $_POST['accept'];
+    $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 1)";
     if (mysqli_query($conn, $insert)) {
-        $message =  ' Accpect  successfully';
+        $message = 'Accept successful';
         $color = 'success';
-        header("location:user-page.php?message=" . urlencode($message) . "&color=$color");
+        header("Location: user-page.php?message=" . urlencode($message) . "&color=$color");
+        exit();
     } else {
-        echo "Something is wrong: " . $insert . "<br>" . $conn->error;
+        echo "Something went wrong: " . $insert . "<br>" . mysqli_error($conn);
+    }
+} elseif (isset($_POST['reject'])) {
+    $uid=$_POST['uid'];
+    $id = $_POST['reject'];
+    $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 0)";
+    if (mysqli_query($conn, $insert)) {
+        $message = 'Reject successful';
+        $color = 'danger';
+        header("Location: user-page.php?message=" . urlencode($message) . "&color=$color");
+        exit();
+    } else {
+        echo "Something went wrong: ";
     }
 }

@@ -22,7 +22,7 @@ include 'header.php';
             $id = $_SESSION['uid'];
             $query = "   SELECT q.id,q.image, q.propertytype, q.address, q.description FROM question AS q
             INNER JOIN accpect_reject AS a ON a.qid = q.id
-            WHERE a.uid =$id AND a.types=1";
+            WHERE a.uid =$id AND a.types=0";
             $result = mysqli_query($conn, $query);
             foreach ($result as $data) {
                 $count = 1;
