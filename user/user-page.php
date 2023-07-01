@@ -57,13 +57,12 @@ include 'header.php';
                             </tr>
             <?php
                         }
-                    
-                    else {
-                        echo "<tr><td colspan='4'>No data found.</td></tr>";
-                    }
-                } 
-            }
+    }
+    }
+    else {
+        echo "<tr><td colspan='4'>No data found.</td></tr>";
         }
+}
             ?>
         </tbody>
     </table>
