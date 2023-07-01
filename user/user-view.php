@@ -1,8 +1,7 @@
 <?php
 include '../include/main.php';
-include 'header.php';
 loginSession();
-$uid=$_SESSION['uid'];
+$uid = $_SESSION['uid'];
 $id = $_GET['id'];
 $query = "SELECT q.id, q.uid, q.image, q.roomimage, q.propertytype, q.bedrooms, q.bathrooms, q.address, q.description, q.laundry, q.parking, q.ac, q.heating, q.amenities
 FROM question AS q
@@ -10,6 +9,7 @@ INNER JOIN user AS u ON u.uid = q.uid
 WHERE q.uid =$id";
 $result = mysqli_query($conn, $query);
 foreach ($result as $data) {
+    include 'header.php';
 ?>
     <form method="post" class="contact-form">
         <div class="container">
@@ -24,7 +24,7 @@ foreach ($result as $data) {
                             <div>
                                 <h6 class="my-0">House Image</h6>
                                 <h1><img src="<?php echo "./../image/" . $data['image'] ?>" width="390px" height="300px"></h1>
-                                <input  type="hidden" name="uid" value="<?php echo $uid=$_SESSION['uid']; ?>">
+                                <input type="hidden" name="uid" value="<?php echo $uid = $_SESSION['uid']; ?>">
                             </div>
                             <span class="text-muted"></span>
                         </li>

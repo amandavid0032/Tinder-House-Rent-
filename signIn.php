@@ -61,6 +61,9 @@ noLoginSession();
 
 <body>
     <div class="container mt-5">
+    <div>
+                <center><?php include './message.php'; ?></center>
+            </div>
         <h1>Login</h1>
         <form method="post">
             <input type="text" name="email" placeholder="Username" required>

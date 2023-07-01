@@ -10,9 +10,6 @@ noLoginSession();
     <!-- Tailwind CSS CDN link -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <div>
-        <center><?php include './message.php'; ?></center>
-    </div>
 </head>
 
 <body>
@@ -73,7 +70,9 @@ noLoginSession();
         </div>
     </div>
     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------HERO  SECTION START FROM HERE --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
+    <div>
+        <center><?php include './message.php'; ?></center>
+    </div>
     <div class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title bg-black">Find Your Perfect Home</h1>
@@ -123,9 +122,9 @@ noLoginSession();
                 Have any questions or suggestions? Feel free to get in touch with us!
             </p>
             <form class="contact-form" method="post">
-                <input type="text" name="name" placeholder="Your Name" class="form-input" />
-                <input type="email" name="email" placeholder="Your Email" class="form-input" />
-                <textarea name="message" placeholder="Your Message" class="form-input" rows="4"></textarea>
+                <input type="text" name="name" placeholder="Your Name" required class="form-input" />
+                <input type="email" name="email" placeholder="Your Email" required class="form-input" />
+                <textarea name="message" placeholder="Your Message" class="form-input" required rows="4"></textarea>
                 <button type="submit" name="submit" class="form-submit">Send Message</button>
             </form>
         </div>

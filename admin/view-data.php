@@ -1,14 +1,14 @@
 <?php
 include '../include/main.php';
-include 'header.php';
 loginSession();
 $id = $_GET['id'];
 $query = "SELECT q.id, q.uid, q.image, q.roomimage, q.propertytype, q.bedrooms, q.bathrooms, q.address, q.description, q.laundry, q.parking, q.ac, q.heating, q.amenities
 FROM question AS q
-INNER JOIN user AS u ON u.id = q.uid
+INNER JOIN user AS u ON u.uid = q.uid
 WHERE q.uid =$id";
 $result = mysqli_query($conn, $query);
 foreach ($result as $data) {
+    include 'header.php';
 ?>
     <div class="container">
         <div class="row">

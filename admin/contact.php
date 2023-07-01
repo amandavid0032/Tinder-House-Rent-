@@ -1,7 +1,7 @@
 <?php
 include "../include/main.php";
-include 'header.php';
 loginSession();
+include 'header.php';
 ?>
 <div class="container">
     <br />
@@ -37,10 +37,7 @@ loginSession();
                 } else {
                     echo "<tr><td colspan='4'>No data found.</td></tr>";
                 }
-            } else {
-                echo "Error in query execution: " . mysqli_error($conn);
-            }
-            ?>
+            } ?>
         </tbody>
     </table>
 </div>

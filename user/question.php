@@ -118,45 +118,45 @@ if (isset($_SESSION['email'])) {
                 <label id="value" for="property-type">Property Type:</label>
                 <div>
                     <label class="radio-label" for="property-flat">
-                        <input type="radio" id="property-flat" name="property-type" value="Flat">
+                        <input type="radio" id="property-flat" name="property-type" required value="Flat">
                         Flat
                     </label>
                     <label class="radio-label" for="property-house">
-                        <input type="radio" id="property-house" name="property-type" value="House">
+                        <input type="radio" id="property-house" name="property-type" required value="House">
                         House
                     </label>
                     <label class="radio-label" for="property-townhouse">
-                        <input type="radio" id="property-townhouse" name="property-type" value="Townhouse">
+                        <input type="radio" id="property-townhouse" name="property-type" required value="Townhouse">
                         Townhouse
                     </label>
                 </div>
             </div>
             <div>
                 <label for="bedrooms">Number of Bedrooms:</label>
-                <input type="number" name="bedrooms" id="bedrooms" min="1">
+                <input type="number" name="bedrooms" id="bedrooms" required min="1">
             </div>
             <div>
                 <label for="bathrooms">Number of Bathrooms:</label>
-                <input type="number" id="bathrooms" name="bathrooms" min="1">
+                <input type="number" id="bathrooms" name="bathrooms" required min="1">
             </div>
             <div>
                 <label for="address">Property Address:</label>
-                <input type="text" id="address" name="address">
+                <input type="text" id="address" required name="address">
             </div>
             <div>
                 <label for="description">Property Description:</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description" required name="description"></textarea>
             </div>
             <div>
                 <label for="laundry-type">Laundry Type:</label>
-                <select id="laundry-type" name="value">
+                <select id="laundry-type" required name="value">
                     <option value="None">None</option>
                     <option value="In-unit">In-unit</option>
                     <option value="Shared">Shared</option>
                 </select>
             </div>
             <div>
-                <label id="value" for="parking-type">Parking Type:</label>
+                <label id="value" required for="parking-type">Parking Type:</label>
             </div>
             <div>
                 <label for="parking-garage" class="radio-label">
@@ -209,5 +209,6 @@ if (isset($_SESSION['email'])) {
         </body>
 <?php     }
 } ?>
+</body>
 
         </html>

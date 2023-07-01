@@ -1,12 +1,9 @@
 <?php
 include '../include/main.php';
-include 'header.php';
 loginSession();
 if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-    $type = $_SESSION['type'];
     $id = $_SESSION['uid'];
-    $query = "SELECT * FROM user WHERE email = '$email'";
+    $query = "SELECT * FROM user WHERE `uid` = $id";
     $result = mysqli_query($conn, $query);
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
@@ -16,58 +13,55 @@ if (isset($_SESSION['email'])) {
         }
     }
 }
+include 'header.php';
 ?>
 <div class="container">
     <br />
-    <h1><?php echo $email = $_SESSION['email']; ?></h1>
-    <h1>User List</h1>
+    <h2>Welcome : <?php echo $user['name']; ?></h2>
+    <h1>Properties List</h1>
     <div>
-                <center><?php include '../message.php'; ?></center>
-            </div>
+        <center><?php include '../message.php'; ?></center>
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Created-date</th>
+                <th scope="col"> Number</th>
+                <th scope="col">Property type</th>
+                <th scope="col">Address</th>
+                <th scope="col">Description</th>
+                <th scope="col">House Image</th>
                 <th scope="col">Action</th>
+
             </tr>
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM user";
+            $query = "SELECT * FROM question";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 $count = 1;
                 if (mysqli_num_rows($result) > 0) {
                     while ($data = mysqli_fetch_assoc($result)) {
-                        if ($data['type'] == 0) {
-                            if ($email == $data['email']) {
-                                continue;
-                            }
-            ?>
-                            <tr>
+                        if ($id !== $data['uid']) {
+            ?> <tr>
                                 <td><?= $count++ ?></td>
-                                <td><?= $data['name'] ?></td>
-                                <td><?= $data['email'] ?></td>
-                                <td><?= $data['createddate'] ?></td>
+                                <td><?= $data['propertytype']; ?></td>
+                                <td><?= $data['address']; ?></td>
+                                <td><?= $data['description']; ?></td>
                                 <td>
-                                    <a href="user-view.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                    <h1><img src="<?php echo "./../image/" . $data['image'] ?>" width="100px" height="100px"></h1>
                                 </td>
-
+                                <td><a href="user-view.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
                                 </td>
                             </tr>
-                            <tr>
-                <?php
+            <?php
                         }
                     }
                 } else {
                     echo "<tr><td colspan='4'>No data found.</td></tr>";
                 }
-            } 
-            mysqli_close($conn);
-                ?>
+            }
+            ?>
         </tbody>
     </table>
     </body>

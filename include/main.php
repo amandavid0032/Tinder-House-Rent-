@@ -36,7 +36,6 @@ if (isset($_POST['signup'])) {
         $message =  'Your Account is  created successfully';
         $color = 'success';
         header("location:signup.php?message=" . urlencode($message) . "&color=$color");
-        header("location:signUp.php?message=" . urlencode($message) . "&color=$color");
     } else {
         echo "Something is wrong: ";
     }
@@ -54,7 +53,7 @@ if (isset($_POST['question'])) {
     $roomimage = $_FILES['image']['name'];
     $tmp_name2 = $_FILES['image']['tmp_name'];
     move_uploaded_file($tmp_name2, './../image/' . $roomimage);
-    
+
     $property = $_POST['property-type'];
     $bedrooms = $_POST['bedrooms'];
     $bathrooms = $_POST['bathrooms'];
@@ -67,7 +66,6 @@ if (isset($_POST['question'])) {
     $amenities = isset($_POST['amenities']) ? $_POST['amenities'] : array();
     if (isset($amenities) && is_array($amenities)) {
         $selectedAmenities = implode(', ', $amenities);
-    
     }
     $insert = "INSERT INTO question VALUES (null, '$id', '$image_name', '$roomimage', '$property', $bedrooms, $bathrooms, '$address', '$description', '$laundry', '$parking', '$ac', '$heating', '$selectedAmenities')";
     if (mysqli_query($conn, $insert)) {
@@ -107,7 +105,10 @@ if (isset($_POST['login'])) {
             header("Location:user/user-page.php");
         }
     } else {
-        echo "Invalid email or password.";
+        $message = 'Invalid email or password.';
+        $color = 'danger';
+        header("location: signin.php?message=" . urlencode($message) . "&color=$color");
+        exit();
     }
 }
 
@@ -135,7 +136,7 @@ function noLoginSession()
 
 // Accpect  and Reject code
 if (isset($_POST['accept'])) {
-    $uid=$_POST['uid'];
+    $uid = $_POST['uid'];
     $id = $_POST['accept'];
     $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 1)";
     if (mysqli_query($conn, $insert)) {
@@ -147,7 +148,7 @@ if (isset($_POST['accept'])) {
         echo "Something went wrong: " . $insert . "<br>" . mysqli_error($conn);
     }
 } elseif (isset($_POST['reject'])) {
-    $uid=$_POST['uid'];
+    $uid = $_POST['uid'];
     $id = $_POST['reject'];
     $insert = "INSERT INTO accpect_reject VALUES (null, '$uid','$id', 0)";
     if (mysqli_query($conn, $insert)) {

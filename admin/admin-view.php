@@ -1,7 +1,7 @@
 <?php
 include '../include/main.php';
-include 'header.php';
 loginSession();
+include 'header.php';
 ?>
 <div class="container">
     <br />
@@ -32,7 +32,7 @@ loginSession();
                                 <td><?= $data['email'] ?></td>
                                 <td><?= $data['createddate'] ?></td>
                                 <td>
-                                    <a href="view-data.php?id=<?= $data['id'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
+                                    <a href="view-data.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
                                 </td>
                             </tr>
                             <tr>
@@ -42,10 +42,7 @@ loginSession();
                 } else {
                     echo "<tr><td colspan='4'>No data found.</td></tr>";
                 }
-            } else {
-                echo "Error in query execution: " . mysqli_error($conn);
             }
-            mysqli_close($conn);
                 ?>
         </tbody>
     </table>
