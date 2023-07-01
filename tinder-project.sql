@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2023 at 03:35 PM
+-- Generation Time: Jul 01, 2023 at 11:39 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -59,16 +59,16 @@ CREATE TABLE `question` (
   `uid` int(20) NOT NULL,
   `image` varchar(500) DEFAULT NULL,
   `roomimage` varchar(500) DEFAULT NULL,
-  `propertytype` varchar(20) NOT NULL,
-  `bedrooms` varchar(10) NOT NULL,
-  `bathrooms` varchar(10) NOT NULL,
+  `propertytype` varchar(50) NOT NULL,
+  `bedrooms` varchar(50) NOT NULL,
+  `bathrooms` varchar(50) NOT NULL,
   `address` varchar(200) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `laundry` varchar(10) NOT NULL,
-  `parking` varchar(10) NOT NULL,
-  `ac` varchar(5) NOT NULL,
-  `heating` varchar(10) NOT NULL,
-  `amenities` varchar(20) NOT NULL
+  `laundry` varchar(50) NOT NULL,
+  `parking` varchar(50) NOT NULL,
+  `ac` varchar(50) NOT NULL,
+  `heating` varchar(50) NOT NULL,
+  `amenities` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,7 +92,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `name`, `email`, `password`, `type`, `createddate`, `isfiled`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'admin', 1, NULL, 1);
+(1, 'Admin', 'admin@gmail.com', 'admin', 1, '2023-07-31 02:27:36', 1);
 
 --
 -- Indexes for dumped tables
@@ -130,25 +130,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `accpect_reject`
 --
 ALTER TABLE `accpect_reject`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
