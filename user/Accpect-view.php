@@ -5,7 +5,7 @@ include 'header.php';
 ?>
 <div class="container">
     <br />
-    <h1>Accpect Record</h1>
+    <h1>Accept Record</h1>
     <table class="table">
         <thead class="thead-dark">
             <tr>
