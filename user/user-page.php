@@ -36,7 +36,7 @@ include 'header.php';
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM question";
+            $query = "SELECT * FROM question WHERE id NOT IN (SELECT qid FROM accpect_reject WHERE `uid` =$id)";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 $count = 1;
@@ -51,16 +51,19 @@ include 'header.php';
                                 <td>
                                     <h1><img src="<?php echo "./../image/" . $data['image'] ?>" width="100px" height="100px"></h1>
                                 </td>
+
                                 <td><a href="user-view.php?id=<?= $data['uid'] ?>" onclick="return confirm('Are you sure you want to view the profile?')" class="btn btn-warning btn-xs" title="View Profile">View</a>
                                 </td>
                             </tr>
             <?php
                         }
+                    
+                    else {
+                        echo "<tr><td colspan='4'>No data found.</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='4'>No data found.</td></tr>";
-                }
+                } 
             }
+        }
             ?>
         </tbody>
     </table>
